@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>My Notepad</title>
+        <style>
+            body{
+                font-family: serif;
+                line-height: 1.6em;
+                background-color: azure;
+            }
+            
+            header, footer{
+                text-align: center;
+            }
+            
+            #container{
+                width: 400px;
+                margin: 50px auto;
+                background-color: beige;
+                overflow: hidden;
+                padding: 30px;
+                
+            }
+            
+            .clear{
+                text-decoration: non;
+                background-color: burlywood;
+                color:orangered;
+                padding: 10px;
+            }
+        </style>
+        <script>
+         function getNote(){
+             if(localStorage.getItem('note')){
+                 var note = localStorage.getItem('note');
+             }else{
+                 var note = "Edit note here, it will automaticaly be saved in the browser's local storage";
+             }
+             document.getElementById('note').innerHTML=note;
+         }
+        
+        function saveNote(id){
+            var note = document.getElementById('note').innerHTML;
+            localStorage.setItem('note', note);
+        }
+            
+            function clearNote(){
+                clear: localStorage.clear();
+                return false;
+            }
+        </script>
+    </head>    
+    <body>
+        <header>
+        <h1>Blessing's Notepad</h1>
+        </header>
+        
+        <section id="container">
+            <div id="note" contenteditable="true" onkeyup="saveNote(this.id)"></div>
+        </section>
+        
+        <footer>
+            <div>
+                <a href="" onclick="javascript:clearNote();" class="clear">Clear Note</a>
+            </div>
+            <p>Blessing's Notepad &copy; 2022</p>
+        </footer>
+        <script>
+            getNote();
+        </script>
+    </body>
+</html>
